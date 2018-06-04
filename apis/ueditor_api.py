@@ -53,6 +53,25 @@ class UploadImage(object):
         return response
 
 
+class UploadScrawl(object):
+
+    def POST(self):
+        post_data = web.input(upfile={})
+        base64_content = post_data.upfile
+        filename = str(uuid.uuid1()) + '.png'
+        img_path = os.path.join(UPLOAD_IMG_DIR, filename)
+        save_upload_img(img_path, base64.decodestring(base64_content))
+        response = {
+            "state": "SUCCESS",
+            "url": UPLOAD_IMG_URL + filename,
+            "title": '',
+            "fileType": '.png',
+            "original": ''
+        }
+        return response
+
+
+
 class ListImage(object):
 
     def GET(self):
@@ -68,7 +87,8 @@ class ListImage(object):
                 list_files = []
                 # listImage(UPLOAD_FILE_DIR, retfiles)
                 # htmlContent = "ue_separate_ue".join(retfiles)
-                return htmlContent
+                # return htmlContent
+
 
 class UploadFile(object):
     def GET(self):
@@ -85,27 +105,6 @@ class UploadFile(object):
         #fileNameFormat = postData.fileNameFormat
         # saveUploadFile(newFileName, fileObj.file.read())
         return "{'url':'" + UPLOAD_FILE_DIR + '/' + newFileName + "','fileType':'" + ext + "','original':'" + fileName + "','state':'" + "SUCCESS" + "'}"
-
-
-class UploadScrawl(object):
-    def GET(self):
-        web.header("Content-Type", "text/html; charset=utf-8")
-        return ""
-
-    def POST(self):
-        reqData = web.input(upfile={})
-        if 'action' in reqData:
-            if reqData.action == 'tmpImg':
-                #上传背景
-                fileObj = reqData.upfile
-                fileName = fileObj.filename
-                # saveUploadFile(fileName, fileObj.file.read())
-                return "<script>parent.ue_callback(" + UPLOAD_FILE_DIR + '/' + fileName + "','" + "SUCCESS" + "')</script>"
-        else:
-            base64Content = reqData.content
-            fileName = str(uuid.uuid1()) + '.png'
-            # saveUploadFile(fileName, base64.decodestring(base64Content))
-            return "{'url':'" + UPLOAD_FILE_DIR + '/' + fileName + "',state:'" + "SUCCESS" + "'}"
 
 
 class GetRemoteImage(object):

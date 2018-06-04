@@ -16,8 +16,8 @@ class Article(object):
         con = sqlite3.connect(DB_PATH)
         cur = con.cursor()
         try:
-            cur.execute(' CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, '
-                        'content TEXT, posted_on DATETIME )')
+            cur.execute(' CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY AUTOINCREMENT, article_title TEXT, '
+                        'article_content TEXT, posted_on DATETIME )')
             print('Create or open table named articles successfully')
         except Exception as e:
             print('Create table failed')
@@ -40,7 +40,7 @@ class Article(object):
 
     @staticmethod
     def new_post(title, text):
-        db.insert('articles', title=title, content=text,
+        db.insert('articles', article_title=title, article_content=text,
                   posted_on=datetime.datetime.utcnow())
 
     @staticmethod
@@ -50,7 +50,7 @@ class Article(object):
     @staticmethod
     def update_post(id, title, text):
         db.update('articles', where='id=$id', vars=locals(),
-                  title=title, content=text)
+                  article_title=title, article_content=text)
 
     @staticmethod
     def transform_datestr(posted_on):

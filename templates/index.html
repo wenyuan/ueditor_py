@@ -4,7 +4,7 @@ $def with(posts)
     <ul>
         $for post in posts:
         <li>
-            <a href="/view/$post.id" style="padding-right: 20px">$post.title</a>
+            <a href="/view/$post.id" style="padding-right: 20px">$post.article_title</a>
             from $config.datestr(post.posted_on)
             <a href="/edit/$post.id" style="padding-left: 20px">编辑</a>
         </li>

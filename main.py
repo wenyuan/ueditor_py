@@ -53,7 +53,7 @@ class View(object):
 
 class New(object):
     form = web.form.Form(
-        web.form.Textbox('title', web.form.notnull,
+        web.form.Textbox('article_title', web.form.notnull,
                          size=30,
                          description=u'文章标题'),
         web.form.Textarea('article_content', web.form.notnull,
@@ -70,7 +70,7 @@ class New(object):
         form = self.form()
         if not form.validates():
             return render.new(form)
-        Article.new_post(form.d.title, form.d.article_content)
+        Article.new_post(form.d.article_title, form.d.article_content)
         raise web.seeother('/')
 
 
@@ -92,7 +92,7 @@ class Edit(object):
         post = Article.get_post(int(id))
         if not form.validates():
             return render.edit(post, form)
-        Article.update_post(int(id), form.d.title, form.d.content)
+        Article.update_post(int(id), form.d.article_title, form.d.article_content)
         raise web.seeother('/')
 
 

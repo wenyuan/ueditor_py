@@ -48,7 +48,7 @@
         //涂鸦图片配置区
         , scrawlActionName: "ue_uploadscrawl"
         , scrawlFieldName: "upfile"
-        , scrawlPathFormat: "/upload/img/{yyyy}{mm}{dd}/{time}{rand:38}"
+        // , scrawlPathFormat: "/upload/img/{yyyy}{mm}{dd}/{time}{rand:38}"
         , scrawlMaxSize: "2048000"
         , scrawlUrlPrefix: ""
         , scrawlInsertAlign: "none"

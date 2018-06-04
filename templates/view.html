@@ -1,7 +1,7 @@
 $def with(post)
 
-<h2>$post.title</h2>
+<h2>$post.article_title</h2>
 <div class="content">
     $config.datestr(post.posted_on)<br/>
-    $:post.content
+    $:post.article_content
 </div>
