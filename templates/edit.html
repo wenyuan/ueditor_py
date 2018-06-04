@@ -1,0 +1,12 @@
+$def with(post,form)
+<h2>编辑 $form.d.title</h2>
+<div class="content">
+    <form action="" method="post">
+        $:form.render_css()
+        <div id="article_content"></div>
+    </form>
+    <h2>删除</h2>
+    <form action="/delete/$post.id" method="post">
+        <input type="submit" value="删除日志"/>
+    </form>
+</div>

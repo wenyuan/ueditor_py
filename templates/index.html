@@ -1,0 +1,12 @@
+$def with(posts)
+<h2>文章列表</h2>
+<div class="content">
+    <ul>
+        $for post in posts:
+        <li>
+            <a href="/view/$post.id" style="padding-right: 20px">$post.title</a>
+            from $config.datestr(post.posted_on)
+            <a href="/edit/$post.id" style="padding-left: 20px">编辑</a>
+        </li>
+    </ul>
+</div>
